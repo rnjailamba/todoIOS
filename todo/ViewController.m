@@ -22,16 +22,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.frame = [[UIScreen mainScreen]bounds];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    NSMutableArray *todos = [NSMutableArray arrayWithArray:@[@"First",@"Second"]];
+    [self tableViewSetup];
+    NSMutableArray *todos = [NSMutableArray arrayWithArray:@[@"First",@"Second",@"Third",@"Fourth"]];
     _todos = todos;
-    self.tableView.allowsMultipleSelectionDuringEditing = NO;
     [self registerNib];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+-(void)tableViewSetup{
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+    self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
+                                               initWithTarget:self action:@selector(longPressGestureRecognized:)];
+    [self.tableView addGestureRecognizer:longPress];
+    
+}
+
+-(void)longPressGestureRecognized:(id)sender{
+    UILongPressGestureRecognizer *longPress = (UILongPressGestureRecognizer *)sender;
+    UIGestureRecognizerState state = longPress.state;
+    
+    CGPoint location = [longPress locationInView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
+    NSLog(@"long pressed at %ld",(long)indexPath.row);
+}
 -(void)registerNib{
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"random"];
 }
@@ -56,8 +73,10 @@
 //        [self.activity startAnimating];
         NSArray * textfields = alertController.textFields;
         UITextField * namefield = textfields[0];
-        [self.todos addObject:namefield.text];
-        [self.tableView reloadData];
+        if(namefield.text.length > 0){
+            [self.todos addObject:namefield.text];
+            [self.tableView reloadData];
+        }
         NSLog(@"%@",namefield.text);
         
     }]];
@@ -107,33 +126,15 @@
 
 - (UIColor *)randomNiceColor
 {
-    // This method returns a random color in a range of nice ones,
-    // using HSB coordinates.
-    
-    // Random hue from 0 to 359 degrees.
-    
     CGFloat hue = (arc4random() % 360) / 359.0f;
-    
-    // Random saturation from 0.0 to 1.0
-    
     CGFloat saturation = (float)arc4random() / UINT32_MAX;
-    
-    // Random brightness from 0.0 to 1.0
-    
     CGFloat brightness = (float)arc4random() / UINT32_MAX;
-    
-    // Limit saturation and brightness to get a nice colors palette.
-    // Remove the following 2 lines to generate a color from the full range.
-    
     saturation = saturation < 0.5 ? 0.5 : saturation;
     brightness = brightness < 0.9 ? 0.9 : brightness;
-    
-    // Return a random UIColor.
-    
     return [UIColor colorWithHue:hue
                       saturation:saturation
                       brightness:brightness
-                           alpha:1];
+                           alpha:0.8];
 }
 
 
