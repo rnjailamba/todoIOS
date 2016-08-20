@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
+                <outlet property="activity" destination="TSX-KB-YTx" id="AZc-MB-6M6"/>
                 <outlet property="tableView" destination="yHG-uj-lid" id="XqV-AH-7LG"/>
                 <outlet property="view" destination="Ai0-r1-jgA" id="19Z-BD-COd"/>
             </connections>
@@ -34,10 +35,18 @@
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="TSX-KB-YTx">
+                    <rect key="frame" x="150" y="274" width="20" height="20"/>
+                    <animations/>
+                </activityIndicatorView>
             </subviews>
             <animations/>
             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="TSX-KB-YTx" firstAttribute="centerX" secondItem="Ai0-r1-jgA" secondAttribute="centerX" id="t23-MZ-3ky"/>
+                <constraint firstItem="TSX-KB-YTx" firstAttribute="centerY" secondItem="Ai0-r1-jgA" secondAttribute="centerY" id="yuM-zW-PHH"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>

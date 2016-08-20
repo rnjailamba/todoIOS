@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)addClicked:(id)sender;
 @property (nonatomic) NSMutableArray *todos;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 
 @end
 
@@ -41,8 +42,29 @@
 }
 
 - (IBAction)addClicked:(id)sender {
-
-}
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Add a todo"
+                                                                              message: nil
+                                                                       preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"todo";
+        textField.textColor = [UIColor darkGrayColor];
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+    }];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Add" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        [self.activity startAnimating];
+        NSArray * textfields = alertController.textFields;
+        UITextField * namefield = textfields[0];
+        [self.todos addObject:namefield.text];
+        [self.tableView reloadData];
+        NSLog(@"%@",namefield.text);
+        
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];}
 
 #pragma UITableViewDelegate
 
