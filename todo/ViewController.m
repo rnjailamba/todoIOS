@@ -26,6 +26,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     NSMutableArray *todos = [NSMutableArray arrayWithArray:@[@"First",@"Second"]];
     _todos = todos;
+    self.tableView.allowsMultipleSelectionDuringEditing = NO;
     [self registerNib];
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -73,6 +74,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [_todos removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
 
 - (UIColor *)randomNiceColor
