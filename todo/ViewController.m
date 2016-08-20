@@ -23,6 +23,7 @@
     self.view.frame = [[UIScreen mainScreen]bounds];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     NSMutableArray *todos = [NSMutableArray arrayWithArray:@[@"First",@"Second"]];
     _todos = todos;
     [self registerNib];
@@ -58,13 +59,51 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"random"];
-    cell.backgroundColor = [UIColor blackColor];
-//    cell.frame = CGRectMake(0, 62 + indexPath.row*200, self.view.frame.size.width, 200);
+    cell.backgroundColor = [self randomNiceColor];
+    cell.selectionStyle = UITableViewCellSeparatorStyleNone;
+    
+    UILabel * label  = [[UILabel alloc]initWithFrame:CGRectMake(20, 15, self.view.frame.size.width, 30)];
+    label.text = [self.todos objectAtIndex:indexPath.row];
+    label.textColor = [UIColor whiteColor];
+    [label setFont:[UIFont boldSystemFontOfSize:20]];
+    
+    [cell.contentView addSubview:label];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
+    return 60;
+}
+
+- (UIColor *)randomNiceColor
+{
+    // This method returns a random color in a range of nice ones,
+    // using HSB coordinates.
+    
+    // Random hue from 0 to 359 degrees.
+    
+    CGFloat hue = (arc4random() % 360) / 359.0f;
+    
+    // Random saturation from 0.0 to 1.0
+    
+    CGFloat saturation = (float)arc4random() / UINT32_MAX;
+    
+    // Random brightness from 0.0 to 1.0
+    
+    CGFloat brightness = (float)arc4random() / UINT32_MAX;
+    
+    // Limit saturation and brightness to get a nice colors palette.
+    // Remove the following 2 lines to generate a color from the full range.
+    
+    saturation = saturation < 0.5 ? 0.5 : saturation;
+    brightness = brightness < 0.9 ? 0.9 : brightness;
+    
+    // Return a random UIColor.
+    
+    return [UIColor colorWithHue:hue
+                      saturation:saturation
+                      brightness:brightness
+                           alpha:1];
 }
 
 
