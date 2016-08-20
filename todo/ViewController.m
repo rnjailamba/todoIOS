@@ -59,7 +59,13 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"random"];
     cell.backgroundColor = [UIColor blackColor];
-    cell.frame = CGRectMake(0, 62 + indexPath.row*100, self.view.frame.size.width, 100);
+//    cell.frame = CGRectMake(0, 62 + indexPath.row*200, self.view.frame.size.width, 200);
     return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 100;
+}
+
+
 @end
