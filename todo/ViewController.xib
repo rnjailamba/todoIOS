@@ -22,7 +22,7 @@
                     <animations/>
                     <items>
                         <navigationItem title="ToDo" id="BmS-eY-pSP">
-                            <barButtonItem key="rightBarButtonItem" title="+" id="Qjw-Wy-lAs">
+                            <barButtonItem key="rightBarButtonItem" image="plus1" id="Qjw-Wy-lAs">
                                 <connections>
                                     <action selector="addClicked:" destination="-1" id="Jbr-i6-oH6"/>
                                 </connections>
@@ -50,4 +50,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="plus1" width="24" height="24"/>
+    </resources>
 </document>
