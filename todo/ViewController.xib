@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTR-C9-8Ah">
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BTR-C9-8Ah">
                     <rect key="frame" x="0.0" y="18" width="320" height="44"/>
                     <animations/>
                     <items>
@@ -30,8 +30,8 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yHG-uj-lid">
-                    <rect key="frame" x="0.0" y="62" width="320" height="524"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yHG-uj-lid">
+                    <rect key="frame" x="0.0" y="62" width="320" height="506"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
@@ -44,6 +44,13 @@
             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="yHG-uj-lid" secondAttribute="bottom" id="4wl-DA-mpJ"/>
+                <constraint firstItem="yHG-uj-lid" firstAttribute="trailing" secondItem="BTR-C9-8Ah" secondAttribute="trailing" id="7cf-YW-WRQ"/>
+                <constraint firstAttribute="trailing" secondItem="yHG-uj-lid" secondAttribute="trailing" id="Ej4-9x-KEg"/>
+                <constraint firstItem="BTR-C9-8Ah" firstAttribute="leading" secondItem="yHG-uj-lid" secondAttribute="leading" id="Qlk-3l-pZJ"/>
+                <constraint firstItem="yHG-uj-lid" firstAttribute="top" secondItem="BTR-C9-8Ah" secondAttribute="bottom" id="ZhC-VX-0Sb"/>
+                <constraint firstItem="BTR-C9-8Ah" firstAttribute="top" secondItem="Ai0-r1-jgA" secondAttribute="top" constant="18" id="dqJ-D0-VhV"/>
+                <constraint firstItem="yHG-uj-lid" firstAttribute="leading" secondItem="Ai0-r1-jgA" secondAttribute="leading" id="ds4-dR-kfE"/>
                 <constraint firstItem="TSX-KB-YTx" firstAttribute="centerX" secondItem="Ai0-r1-jgA" secondAttribute="centerX" id="t23-MZ-3ky"/>
                 <constraint firstItem="TSX-KB-YTx" firstAttribute="centerY" secondItem="Ai0-r1-jgA" secondAttribute="centerY" id="yuM-zW-PHH"/>
             </constraints>
